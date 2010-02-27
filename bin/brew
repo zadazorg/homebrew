@@ -59,7 +59,7 @@ Hardware: #{cores}-core #{bits}-bit #{Hardware.intel_family}
 OS X: #{MACOS_FULL_VERSION}
 Kernel Architecture: #{kernel_arch}
 Ruby: #{RUBY_VERSION}-#{RUBY_PATCHLEVEL}
-GCC-4.2: #{gcc ? "build #{gcc}" : "N/A"} (5577 or newer recommended)
+GCC-4.2: #{gcc ? "build #{gcc}" : "N/A"} (#{HOMEBREW_RECOMMENDED_GCC} or newer recommended)
 LLVM: #{llvm ? "build #{llvm}" : "N/A" } #{llvm ? "(2206 or newer recommended)" : "" }
 MacPorts or Fink? #{macports_or_fink_installed?}
 X11 installed? #{x11_installed?}
@@ -351,6 +351,9 @@ begin
 
   when 'branch', 'checkout', 'pull', 'push', 'rebase', 'reset'
     onoe "Unknown command: #{arg} (did you mean 'git #{arg}'?)"
+
+  when 'doctor'
+    brew_doctor
 
   else
     onoe "Unknown command: #{arg}"
